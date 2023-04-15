@@ -63,7 +63,7 @@ def callback_all(callbackQuery):
 
 
 async def bingChat(messageText, message):
-    await bot.send_chat_action(message.chat.id, 'typing')
+    bot.send_chat_action(message.chat.id, 'typing')
     response_dict = await EDGES[message.from_user.id].ask(prompt=messageText,
                                                           conversation_style=ConversationStyle.creative)
 
