@@ -6,7 +6,7 @@ import os
 
 from telebot.async_telebot import AsyncTeleBot
 
-from EdgeGPT import Chatbot, ConversationStyle
+from EdgeGPT import Chatbot
 from telebot.util import quick_markup
 
 BOT_TOKEN = os.getenv('BOT_TOKEN')
@@ -64,8 +64,7 @@ def callback_all(callbackQuery):
 
 async def bingChat(messageText, message):
     bot.send_chat_action(message.chat.id, 'typing')
-    response_dict = await EDGES[message.from_user.id].ask(prompt=messageText,
-                                                          conversation_style=ConversationStyle.creative)
+    response_dict = await EDGES[message.from_user.id].ask(prompt=messageText)
 
     json_str = json.dumps(response_dict)
     print("JSON: \n" + json_str)
