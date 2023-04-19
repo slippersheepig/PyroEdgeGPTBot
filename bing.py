@@ -16,7 +16,7 @@ COOKIE_PATH = os.getenv('COOKIE_PATH', './cookie.json')
 bot = telebot.TeleBot(BOT_TOKEN)
 EDGES = {}
 for user in ALLOWED_USER_IDS:
-    EDGES[int(user)] = Chatbot(cookiePath=COOKIE_PATH)
+    EDGES[int(user)] = Chatbot(cookie_path=COOKIE_PATH)
 # gbot = Chatbot(cookiePath=COOKIE_PATH)
 not_allow_info = '⚠️You are not authorized to use this bot⚠️'
 
