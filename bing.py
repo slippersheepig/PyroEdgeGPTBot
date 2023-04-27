@@ -122,7 +122,6 @@ def callback_all(callback_query):
 async def bing_chat(message_text, message):
     if message.from_user.id not in EDGES:
         EDGES[message.from_user.id] = Chatbot(cookie_path=COOKIE_PATH)
-    bot.send_chat_action(message.chat.id, 'typing')
     response_dict = await EDGES[message.from_user.id].ask(prompt=message_text,
                                                           conversation_style=conversation_style)
 
@@ -130,6 +129,7 @@ async def bing_chat(message_text, message):
     print("JSON: \n" + json_str)
 
     if 'text' in response_dict['item']['messages'][1]:
+        bot.send_chat_action(message.chat.id, 'typing')
         response = re.sub(r'\[\^\d\^]', '',
                           response_dict['item']['messages'][1]['text'])
     else:
