@@ -93,9 +93,11 @@ def response_all(message):
             response_list = asyncio.run(bing_chat(message.text, message))
             if len(response_list[0]) > 4095:
                 for x in range(0, len(response_list[0]), 4095):
+                    bot.send_chat_action(message.from_user.id, 'typing')
                     bot.reply_to(
                         message, response_list[0][x:x + 4095], parse_mode='Markdown', reply_markup=response_list[1])
             else:
+                bot.send_chat_action(message.from_user.id, 'typing')
                 bot.reply_to(
                     message, response_list[0], parse_mode='Markdown', reply_markup=response_list[1])
         else:
