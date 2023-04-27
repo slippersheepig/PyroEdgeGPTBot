@@ -122,7 +122,7 @@ def callback_all(callback_query):
 async def bing_chat(message_text, message):
     if message.from_user.id not in EDGES:
         EDGES[message.from_user.id] = Chatbot(cookie_path=COOKIE_PATH)
-    async with bot.send_chat_action(message.chat.id, 'typing')
+    async with bot.send_chat_action(message.chat.id, 'typing'):
         response_dict = await EDGES[message.from_user.id].ask(prompt=message_text,
                                                               conversation_style=conversation_style)
 
