@@ -138,7 +138,6 @@ async def bing_chat(message_text, message):
                                                           conversation_style=conversation_style)
 
     if 'text' in response_dict['item']['messages'][1]:
-        bot.send_chat_action(message.chat.id, 'typing')
         response = re.sub(r'\[\^\d\^]', '',
                           response_dict['item']['messages'][1]['text'])
     else:
