@@ -99,6 +99,7 @@ def response_all(message):
                 message_text = message.text[len(BOT_ID):]
             else:
                 message_text = message.text
+            bot.send_chat_action(message.chat.id, 'typing')
             response_list = asyncio.run(bing_chat(message_text, message))
             print("\033[1;34mResponse: " + response_list[0])
             if len(response_list[0]) > 4095:
