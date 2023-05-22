@@ -9,7 +9,7 @@ from telebot.util import quick_markup
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 ALLOWED_USER_IDS = os.getenv('ALLOWED_USER_IDS').split(',')
 BOT_ID = os.getenv('BOT_ID', '')
-COOKIE_PATH = os.getenv('COOKIE_PATH', './cookie.json')
+#COOKIE_PATH = os.getenv('COOKIE_PATH', './cookie.json')
 GROUP_MODE = os.getenv('GROUP_MODE', 'False')
 PUBLIC_MODE = os.getenv('PUBLIC_MODE', 'False')
 
@@ -18,7 +18,7 @@ print("BOT_TOKEN: " + BOT_TOKEN)
 print("BOT_ID: " + BOT_ID)
 print("ALLOWED_USER_IDS: ")
 print(ALLOWED_USER_IDS)
-print("COOKIE_PATH: " + COOKIE_PATH)
+#print("COOKIE_PATH: " + COOKIE_PATH)
 print("GROUP_MODE: " + GROUP_MODE)
 print("PUBLIC_MODE: " + PUBLIC_MODE + '\033[1;33m')
 
@@ -38,7 +38,7 @@ my_conversation_style = ConversationStyle.balanced
 def send_welcome(message):
     if is_allowed(message) or PUBLIC_MODE == "True" or message.chat.type == "group":
         bot.reply_to(
-            message, "Bing Chat Bot By Kakanya~\n/help - Show help message\n/reset - Reset conversation\n/switch - "
+            message, "Bing Chat Bot By pininkara~\n/help - Show help message\n/reset - Reset conversation\n/switch - "
                      "Switch conversation style (creative,balanced,precise)\n", reply_markup=markup)
     else:
         bot.reply_to(message, not_allow_info)
@@ -49,7 +49,9 @@ def send_reset(message):
     if is_allowed(message) or PUBLIC_MODE == "True" or message.chat.type == "group":
         try:
             if message.from_user.id not in EDGES:
-                EDGES[message.from_user.id] = Chatbot(cookie_path=COOKIE_PATH)
+                with open('./cookies.json', 'r') as f:
+                    cookies = json.load(f)
+                EDGES[message.from_user.id] = Chatbot(cookies=cookies)
             asyncio.run(EDGES[message.from_user.id].reset())
         except Exception as e:
             print("\033[31mError: ", e)
