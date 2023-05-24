@@ -1,1 +1,1 @@
-https://github.com/pininkara/BingChatBot
+https://github.com/tom-snow/PyroEdgeGPTBot
