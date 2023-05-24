@@ -1,5 +1,0 @@
-aiohttp
-EdgeGPT
-pyTelegramBotAPI
-telebot
-asyncio
