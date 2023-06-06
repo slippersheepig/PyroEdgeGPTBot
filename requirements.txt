@@ -1,6 +1,6 @@
 python-dotenv
 Pyrogram
-EdgeGPT
+EdgeGPT==0.8.2
 BingImageCreator
 tgcrypto
 aiohttp
